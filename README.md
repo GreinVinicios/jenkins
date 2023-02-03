@@ -2,6 +2,30 @@
 Repo with some ways/examples on how to install Jenkins
 
 ## docker
+This folder contains one script to run Jenkins usning Docker and one folder where is possible see one example on how to customize a Jenkins image.
+To run Jenkins using this Docker version, just run:
+```bash
+JENKINS_IMAGE=jenkins/jenkins:latest PORT=8080 CONTAINER_NAME=jenkins DRY_RUN=n ./install.sh
+```
+
+Where:
+| Variable | Default | Description |
+| - | - | - |
+| JENKINS_IMAGE | jenkins/jenkins:latest | Configure which Jenkins image should be used |
+| PORT | 8080 | The port where Jenkins will be exposed |
+| CONTAINER_NAME | jenkins | The name of the container |
+
+To customize a new image, just change the [Dockerfile](./docker/custom_image/Dockerfile) and run Docker commands to build and push, example:
+```bash
+docker build -t <docker_repo>/jenkins:latest .
+docker push <docker_repo>/jenkins:latest
+```
+
+>**Uninstall**
+```bash
+docker stop jenkins
+```
+
 ## kubernetes
 The following projects were executed using [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 ### helm installation
